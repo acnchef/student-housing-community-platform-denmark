@@ -1,6 +1,6 @@
 [build]
-  command = "npx expo export --platform web"
-  publish = "web-build"
+  command = "npm install && npx expo install && npx expo export --platform web"
+  publish = "dist"
 
 [[redirects]]
   from = "/*"
