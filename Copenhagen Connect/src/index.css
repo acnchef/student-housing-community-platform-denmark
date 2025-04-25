@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: theme('colors.dawn');
+  background-color: theme('colors.white');
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    color: theme('colors.dawn');
+  }
+  
+  p {
+    color: theme('colors.dawn');
+    opacity: 0.9;
+  }
+}
+
+@layer components {
+  .gradient-primary {
+    @apply bg-gradient-to-r from-primary-start to-primary-end;
+  }
+  
+  .gradient-secondary {
+    @apply bg-gradient-to-r from-secondary-start to-secondary-end;
+  }
+  
+  .gradient-accent {
+    @apply bg-gradient-to-r from-accent-start to-accent-end;
+  }
+  
+  .card {
+    @apply rounded-xl shadow-card bg-white border border-gray-100;
+  }
+  
+  .section-padding {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

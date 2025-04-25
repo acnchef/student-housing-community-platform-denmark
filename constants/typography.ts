@@ -3,8 +3,9 @@ import { Platform } from "react-native";
 export const typography = {
   fontFamily: {
     regular: Platform.OS === "ios" ? "System" : "Roboto",
-    medium: Platform.OS === "ios" ? "System" : "Roboto",
-    bold: Platform.OS === "ios" ? "System" : "Roboto",
+    medium: Platform.OS === "ios" ? "System-Medium" : "Roboto-Medium",
+    semibold: Platform.OS === "ios" ? "System-Semibold" : "Roboto-Medium",
+    bold: Platform.OS === "ios" ? "System-Bold" : "Roboto-Bold",
   },
   fontSize: {
     xs: 12,
@@ -23,5 +24,11 @@ export const typography = {
     xl: 32,
     xxl: 36,
     xxxl: 40,
+  },
+  fontWeight: {
+    regular: "400",
+    medium: "500",
+    semibold: "600",
+    bold: "700",
   },
 };
