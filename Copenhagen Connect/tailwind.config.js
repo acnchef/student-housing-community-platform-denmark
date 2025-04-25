@@ -7,11 +7,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        midnight: "#124B91",  // Primary brand color
-        brightBlue: "#99F0FA", // Interactive elements
-        softYellow: "#F4F5AC", // Cards and warnings
-        white: "#FFFFFF",     // Backgrounds
-        dawn: "#10101A",      // Text color
+        'mint': 'var(--mint)',
+        'soft-yellow': 'var(--soft-yellow)',
+        'accent-yellow': 'var(--accent-yellow)',
+        'primary-start': 'var(--primary-start)',
+        'primary-end': 'var(--primary-end)',
+        'dawn': 'var(--dawn)',
+        'midnight': 'var(--midnight)',
+        'bright-blue': 'var(--bright-blue)',
+      },
+      backgroundImage: {
+        'gradient-primary': 'linear-gradient(to right, var(--primary-start), var(--primary-end))',
+        'gradient-background': 'linear-gradient(135deg, var(--mint) 0%, var(--soft-yellow) 100%)',
       },
       gradientColorStops: {
         'primary-start': '#124B91',  // Midnight Blue

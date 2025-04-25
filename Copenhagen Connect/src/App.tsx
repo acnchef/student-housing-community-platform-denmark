@@ -1,27 +1,13 @@
 import { useEffect } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 import './index.css';
 import { Navbar } from './components/Navbar';
 import { Button } from './components/Button';
 import { WaitlistForm } from './components/WaitlistForm';
 import { FeatureCard } from './components/FeatureCard';
-import { Building, Check, CreditCard, FileCheck, House, MessageCircle, Shield, Users, Wallet } from 'lucide-react';
+import { Building, Check, CreditCard, FileCheck, MessageCircle, Shield, Users, Wallet } from 'lucide-react';
 
-export function App() {
-  useEffect(() => {
-    // Load Plus Jakarta Sans font
-    const link = document.createElement('link');
-    link.href = 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap';
-    link.rel = 'stylesheet';
-    document.head.appendChild(link);
-    
-    // Update meta tags
-    document.title = 'HomeBase | Safe Housing for International Students in Denmark';
-    
-    return () => {
-      document.head.removeChild(link);
-    };
-  }, []);
-
+function LandingPage() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -40,16 +26,16 @@ export function App() {
               The trusted platform helping international students relocate to Denmark with secure housing, protected deposits, and a supportive community.
             </p>
             <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
-              <a href="#join-waitlist">
+              <Link to="/waitlist">
                 <Button variant="primary" size="lg">
                   Join the Waitlist
                 </Button>
-              </a>
-              <a href="#how-it-works">
+              </Link>
+              <Link to="/preview">
                 <Button variant="outline" size="lg">
-                  Learn More
+                  Preview App
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -368,6 +354,54 @@ export function App() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function AppPreview() {
+  return (
+    <div className="min-h-screen bg-white p-8">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold mb-6">App Preview</h1>
+        <p className="text-lg mb-4">The full app is under development. Here's what's coming:</p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>Secure housing listings with verified landlords</li>
+          <li>Protected deposit system</li>
+          <li>Community features for international students</li>
+          <li>Document verification and storage</li>
+          <li>24/7 support system</li>
+        </ul>
+        <div className="mt-8">
+          <Link to="/">
+            <Button variant="primary">Back to Home</Button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function App() {
+  useEffect(() => {
+    // Load Plus Jakarta Sans font
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+    
+    // Update meta tags
+    document.title = 'HomeBase | Safe Housing for International Students in Denmark';
+    
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
+  return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/preview" element={<AppPreview />} />
+      <Route path="/waitlist" element={<WaitlistForm />} />
+    </Routes>
   );
 }
 

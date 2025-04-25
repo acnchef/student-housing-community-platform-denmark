@@ -3,18 +3,44 @@
 @tailwind utilities;
 
 :root {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light;
+  --mint: #B2F4EA;
+  --soft-yellow: #FFF4D4;
+  --accent-yellow: #FFD60A;
+  --primary-start: #2563EB;
+  --primary-end: #1D4ED8;
+  --dawn: #1E293B;
+  --midnight: #0F172A;
+  --bright-blue: #EFF6FF;
 }
 
 body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  color: theme('colors.dawn');
-  background-color: theme('colors.white');
+  background: linear-gradient(135deg, var(--mint) 0%, var(--soft-yellow) 100%);
+  color: var(--dawn);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.shadow-soft {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-medium {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.section-padding {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
 }
 
 @layer base {
