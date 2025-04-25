@@ -52,7 +52,8 @@ export const Button: React.FC<ButtonProps> = ({
     if (disabled) {
       return {
         ...baseStyle,
-        opacity: 0.5,
+        opacity: 0.6,
+        backgroundColor: colors.textSecondary,
       };
     }
 
@@ -68,7 +69,7 @@ export const Button: React.FC<ButtonProps> = ({
         return {
           ...baseStyle,
           backgroundColor: "transparent",
-          borderWidth: 1,
+          borderWidth: 2,
           borderColor: colors.primary,
         };
       case "ghost":
@@ -85,20 +86,21 @@ export const Button: React.FC<ButtonProps> = ({
     const baseStyle: TextStyle = {
       ...styles.text,
       ...styles[`text${size.charAt(0).toUpperCase() + size.slice(1)}` as keyof typeof styles],
+      fontWeight: '600',
     };
 
     switch (variant) {
       case "primary":
-      case "secondary":
         return {
           ...baseStyle,
-          color: "#FFFFFF",
+          color: colors.background,
         };
-      case "outline":
+      case "secondary":
         return {
           ...baseStyle,
           color: colors.primary,
         };
+      case "outline":
       case "ghost":
         return {
           ...baseStyle,
@@ -106,6 +108,20 @@ export const Button: React.FC<ButtonProps> = ({
         };
       default:
         return baseStyle;
+    }
+  };
+
+  const getGradientColors = () => {
+    if (disabled) {
+      return [colors.textSecondary, colors.textSecondary];
+    }
+    switch (variant) {
+      case "primary":
+        return gradients.primary;
+      case "secondary":
+        return gradients.secondary;
+      default:
+        return gradients.primary;
     }
   };
 
@@ -136,7 +152,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   const buttonStyles = [getButtonStyles(), style];
 
-  if (variant === "primary") {
+  if (variant === "primary" || variant === "secondary") {
     return (
       <TouchableOpacity
         onPress={onPress}
@@ -145,30 +161,10 @@ export const Button: React.FC<ButtonProps> = ({
         activeOpacity={0.8}
       >
         <LinearGradient
-          colors={[gradients.primary[0], gradients.primary[1]] as readonly [string, string]}
+          colors={getGradientColors() as readonly [string, string]}
           start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          style={buttonStyles}
-        >
-          {renderContent()}
-        </LinearGradient>
-      </TouchableOpacity>
-    );
-  }
-
-  if (variant === "secondary") {
-    return (
-      <TouchableOpacity
-        onPress={onPress}
-        disabled={disabled || loading}
-        style={styles.touchable}
-        activeOpacity={0.8}
-      >
-        <LinearGradient
-          colors={[gradients.secondary[0], gradients.secondary[1]] as readonly [string, string]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          style={buttonStyles}
+          end={{ x: 1, y: 1 }}
+          style={[buttonStyles, styles.gradientButton]}
         >
           {renderContent()}
         </LinearGradient>
@@ -196,18 +192,29 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     justifyContent: "center",
     alignItems: "center",
+    elevation: 2,
+    shadowColor: colors.shadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  gradientButton: {
+    overflow: 'hidden',
   },
   buttonSm: {
-    paddingVertical: 8,
     paddingHorizontal: 16,
+    paddingVertical: 8,
+    minWidth: 80,
   },
   buttonMd: {
-    paddingVertical: 12,
     paddingHorizontal: 24,
+    paddingVertical: 12,
+    minWidth: 120,
   },
   buttonLg: {
-    paddingVertical: 16,
     paddingHorizontal: 32,
+    paddingVertical: 16,
+    minWidth: 160,
   },
   fullWidth: {
     alignSelf: "stretch",
